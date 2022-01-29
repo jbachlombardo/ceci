@@ -17,6 +17,7 @@ class Block :
         self.hash = self.hash_block() # Hash of new block
 
     def hash_block(self) :
+        """Block hash helper function"""
         block_encrypt = h.sha256() # Create hasher
         encrypt_update = (str(self.index) + str(self.nonce) + str(self.timestamp) + str(self.prev_hash) + str(self.data)).encode() # Create content to be hashed
         block_encrypt.update(encrypt_update) # Update hasher
