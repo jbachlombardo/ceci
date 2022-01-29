@@ -1,3 +1,5 @@
+# mini block
+
 Test script to demonstrate blockchain mechanics in self-contained script
 
 29 jan: add proof of work concept
