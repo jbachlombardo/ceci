@@ -22,30 +22,31 @@ class Block :
         encrypt_update = (str(self.index) + str(self.nonce) + str(self.timestamp) + str(self.prev_hash) + str(self.data)).encode() # Create content to be hashed
         block_encrypt.update(encrypt_update) # Update hasher
         return block_encrypt.hexdigest() # Return hash string
-    
+
     def proof_of_work(last_block) :
         """Proof of work helper function"""
-        
+
         # Function values
         prev_nonce = last_block.nonce # Get last nonce to validate question
         new_nonce = 0 # Arbitrary start value for new nonce
         validator = '01' # Arbitrary string for validating question
         valid_params = False # Initiate question with False
-        
+
         # Loop until problem solved
         while valid_params is False :
             guess = (str(prev_nonce) + str(new_nonce)).encode()
             hex_guess = h.sha256(guess).hexdigest()
             if hex_guess[:len(validator)] == validator :
                 valid_params = True
-            new_nonce += 1
+            else :
+                new_nonce += 1
 
         # Return proof of work
-        return new_nonce   
-  
+        return new_nonce
+
     def start_block() :
         """Create first block of chain"""
-        
+
         index = 0 # First block index at 0
         nonce = 0 # Arbitrary value for first block
         timestamp = datetime.now()
@@ -55,22 +56,22 @@ class Block :
 
     def new_block(last_block) :
         """Create a new block"""
-       
+
         # Extract data from last block
         prev_data = last_block.data
         prev_index = last_block.index
         prev_hash = last_block.hash
-        
+
         # Conduct proof of work
         new_nonce = Block.proof_of_work(last_block) # New nonce value for block hash
-        
+
         #Set new block values
         index = prev_index + 1 # New block index is old block index + 1
         timestamp = datetime.now()
         prev_hash = prev_hash # New block stores previous block's hash
         data = prev_data + str(index) # Arbitrary data to store in new block
         return Block(index, timestamp, new_nonce, prev_hash, data) # Return new block
-        
+
 # Create blockchain as list for holding blocks
 block_chain = list()
 
