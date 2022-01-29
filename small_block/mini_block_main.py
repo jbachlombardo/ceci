@@ -10,6 +10,7 @@ class Block :
     def __init__(self, index, timestamp, prev_hash, data) :
         self.index = index # Index of block in blockchain
         self.timestamp = timestamp # Timestamp of block creation
+        self.nonce = nonce # Nonce value for validation
         self.prev_hash = prev_hash # Hash of previous block in blockchain
         self.data = data # Data contained in block
         self.hash = self.hash_block() # Hash of new block
