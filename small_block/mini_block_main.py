@@ -72,6 +72,33 @@ class Block :
         data = prev_data + str(index) # Arbitrary data to store in new block
         return Block(index, timestamp, new_nonce, prev_hash, data) # Return new block
 
+class Transaction : ### ONLY MAPPED OUT WITH COMMENT BLOCKS
+
+    """Class for creating transactions"""
+
+    def __init__(self, transaction_data, holder_data) :
+        self.transaction_data = transaction_data # All historical transactions
+        self.holder_data = holder_data # Current list of holders and amounts
+
+    def create_transation(seller, buyer, amount, holder_data) :
+        """Create a new transaction"""
+
+        # Create a new transaction and return it in the form of a dictionary
+
+        # Verify transaction can happen based on existing balances
+
+        # If validated, return new transaction
+        return new_transaction
+
+    def append_transaction(new_transaction, transaction_data, holder_data) :
+        """Add new transaction to complete list of transactions and update holding values"""
+
+        # Add transaction to the full list
+
+        # Update holder dictionary
+
+        return transaction_data, holder_data
+
 # Create blockchain as list for holding blocks
 block_chain = list()
 
